@@ -1,5 +1,10 @@
 header {
+    height: 20vh;
     background-color: #fff;
+}
+
+body {
+    height: 80vh;
 }
 
 header img {
@@ -14,7 +19,7 @@ main h1 {
 #grid {
     height: 700px;
     width: 700px;
-    margin: 80px auto;
+    margin: 50px auto;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;

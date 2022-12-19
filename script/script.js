@@ -64,9 +64,10 @@ const h1 = document.getElementById("h1");
 // !  AVVIO
 btn.addEventListener("click", function () {
     const bombList = [];
+    const clickedByUser = [];
     grid.innerHTML = "";  //refresh grid
 
-    counter = 0; //variabile d'appoggio per contatore
+    let counter = 0; //variabile d'appoggio per contatore
 
     const userChoice = parseInt(document.getElementById("select").value);
 
@@ -74,17 +75,24 @@ btn.addEventListener("click", function () {
     for (j = 1; j <= 16; j++) {
         const random = randomUniqueNumber(j, userChoice, bombList);
         bombList.push(random);
-        console.log(random)
+
     }
 
-
+    console.table(bombList)
     for (let i = 1; i <= userChoice; i++) {
         const cell = createCell(userChoice);
         grid.appendChild(cell);
         cell.innerText = (i);
 
         cell.addEventListener("click", () => {
-            counter += 1;
+            if (!clickedByUser.includes(cell.innerText)) {
+                clickedByUser.push(cell.innerText);
+                counter += 1;
+
+            } else if (clickedByUser.includes(cell.innerText)) {
+                counter += 0;
+            }
+            console.log(counter)
             // console.log(counter);
             if (bombList.includes(i)) {
                 cell.classList.add("bomb");
@@ -102,6 +110,14 @@ btn.addEventListener("click", function () {
                 cell.classList.add("clicked");
                 cell.innerText = "";
             }
+            if (counter === (userChoice - 16)) {
+                alert(`VINTO CON UN PUNTEGGIO DI: ${counter}`)
+                setTimeout(function () {
+                    h1.classList.remove("d-none");
+                    grid.classList.add("d-none");
+                }, 300);
+            }
+            console.table(clickedByUser);
         })
     }
 
