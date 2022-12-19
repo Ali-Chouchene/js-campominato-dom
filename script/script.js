@@ -92,8 +92,9 @@ btn.addEventListener("click", function () {
             } else if (clickedByUser.includes(cell.innerText)) {
                 counter += 0;
             }
-            console.log(counter)
+
             // console.log(counter);
+
             if (bombList.includes(i)) {
                 cell.classList.add("bomb");
                 cell.innerText = "";
@@ -117,7 +118,6 @@ btn.addEventListener("click", function () {
                     grid.classList.add("d-none");
                 }, 300);
             }
-            console.table(clickedByUser);
         })
     }
 
