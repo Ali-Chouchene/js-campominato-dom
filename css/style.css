@@ -55,5 +55,16 @@ main h1 {
 }
 
 .clicked {
-    background-color: rgb(9, 113, 250);
+    background-color: rgb(18, 241, 10);
+    background-image: url(../img/flower.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.bomb {
+    background-color: rgb(255, 4, 4);
+    background-image: url(../img/bomb.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }

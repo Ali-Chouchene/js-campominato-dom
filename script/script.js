@@ -29,7 +29,7 @@ Se avete finito tutti i bonus potete scrivere all'insegnante o ai tutor per rice
 
 */
 //! ARRAY
-// const bombList = [];
+
 
 
 
@@ -40,18 +40,18 @@ const createCell = (number) => {
         cell.classList.add("celleasy")
     } else if (number === 81) {
         cell.classList.add("cellmedium")
-    } else {
+    } else if (number === 49) {
         cell.classList.add("cellhard")
     }
     return cell;
 }
-// const randomUniqueNumber = (min = 1, max = 16, blackList) => {
-//     let randomNumber;
-//     do {
-//         randomNumber = Math.floor(Math.random() * (max + 1 - min)) + min;
-//     } while (blackList.includes(randomNumber));
-//     return randomNumber;
-// }
+const randomUniqueNumber = (min = 1, max = 16, blackList) => {
+    let randomNumber;
+    do {
+        randomNumber = Math.floor(Math.random() * (max + 1 - min)) + min;
+    } while (blackList.includes(randomNumber));
+    return randomNumber;
+}
 
 
 
@@ -63,7 +63,7 @@ const btn = document.getElementById("button");
 const h1 = document.getElementById("h1");
 // !  AVVIO
 btn.addEventListener("click", function () {
-
+    const bombList = [];
     grid.innerHTML = "";  //refresh grid
 
     counter = 0; //variabile d'appoggio per contatore
@@ -71,10 +71,11 @@ btn.addEventListener("click", function () {
     const userChoice = parseInt(document.getElementById("select").value);
 
 
-    // for (let y = 1; y <= 16; y++) {
-    //     const random = randomUniqueNumber(1, userChoice, bombList);
-    //     bombList.push(random);
-    // }
+    for (j = 1; j <= 16; j++) {
+        const random = randomUniqueNumber(j, userChoice, bombList);
+        bombList.push(random);
+        console.log(random)
+    }
 
 
     for (let i = 1; i <= userChoice; i++) {
@@ -82,14 +83,28 @@ btn.addEventListener("click", function () {
         grid.appendChild(cell);
         cell.innerText = (i);
 
-
         cell.addEventListener("click", () => {
-            // console.log(i);
             counter += 1;
-            console.log(counter);
-            cell.classList.toggle("clicked");
+            // console.log(counter);
+            if (bombList.includes(i)) {
+                cell.classList.add("bomb");
+                cell.innerText = "";
+                setTimeout(function () {
+                    alert(`OPS: SEI PASSATO SU UNA BOMBA!
+                il tuo punteggio è: ${counter - 1}`);
+                }, 200);
+                setTimeout(function () {
+                    h1.classList.remove("d-none");
+                    grid.classList.add("d-none");
+                }, 500);
+                return
+            } else {
+                cell.classList.add("clicked");
+                cell.innerText = "";
+            }
         })
     }
+
     h1.classList.add("d-none");
     grid.classList.remove("d-none");
 
