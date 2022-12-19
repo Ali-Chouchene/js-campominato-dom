@@ -28,21 +28,33 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 Se avete finito tutti i bonus potete scrivere all'insegnante o ai tutor per ricevere delle sfide extra!
 
 */
+//! ARRAY
+// const bombList = [];
 
 
 
 // ! FUNCTIONS
 const createCell = (number) => {
     const cell = document.createElement("div");
-    if (number === "100") {
+    if (number === 100) {
         cell.classList.add("celleasy")
-    } else if (number === "81") {
+    } else if (number === 81) {
         cell.classList.add("cellmedium")
     } else {
         cell.classList.add("cellhard")
     }
     return cell;
 }
+// const randomUniqueNumber = (min = 1, max = 16, blackList) => {
+//     let randomNumber;
+//     do {
+//         randomNumber = Math.floor(Math.random() * (max + 1 - min)) + min;
+//     } while (blackList.includes(randomNumber));
+//     return randomNumber;
+// }
+
+
+
 
 
 // ! PRENDO ELEMENTI DAL DOM
@@ -51,18 +63,30 @@ const btn = document.getElementById("button");
 const h1 = document.getElementById("h1");
 // !  AVVIO
 btn.addEventListener("click", function () {
-    //refresh grid
-    grid.innerHTML = "";
 
-    const userChoice = document.getElementById("select").value;
+    grid.innerHTML = "";  //refresh grid
+
+    counter = 0; //variabile d'appoggio per contatore
+
+    const userChoice = parseInt(document.getElementById("select").value);
+
+
+    // for (let y = 1; y <= 16; y++) {
+    //     const random = randomUniqueNumber(1, userChoice, bombList);
+    //     bombList.push(random);
+    // }
+
+
     for (let i = 1; i <= userChoice; i++) {
         const cell = createCell(userChoice);
-
         grid.appendChild(cell);
         cell.innerText = (i);
 
+
         cell.addEventListener("click", () => {
-            console.log(i);
+            // console.log(i);
+            counter += 1;
+            console.log(counter);
             cell.classList.toggle("clicked");
         })
     }
