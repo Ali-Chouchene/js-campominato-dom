@@ -1,0 +1,59 @@
+header {
+    background-color: #fff;
+}
+
+header img {
+    width: 150px;
+    background-color: #fff;
+}
+
+main h1 {
+    font-size: 80px;
+}
+
+#grid {
+    height: 700px;
+    width: 700px;
+    margin: 80px auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    color: white;
+}
+
+.celleasy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    border: 1px solid green;
+    cursor: pointer;
+}
+
+.cellmedium {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+    border: 1px solid green;
+    cursor: pointer;
+}
+
+.cellhard {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+    border: 1px solid green;
+    cursor: pointer;
+}
+
+.clicked {
+    background-color: rgb(9, 113, 250);
+}
