@@ -28,7 +28,6 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 Se avete finito tutti i bonus potete scrivere all'insegnante o ai tutor per ricevere delle sfide extra!
 
 */
-//! ARRAY
 
 
 
@@ -85,32 +84,29 @@ btn.addEventListener("click", function () {
         cell.innerText = (i);
 
         cell.addEventListener("click", () => {
-            if (!clickedByUser.includes(cell.innerText)) {
-                clickedByUser.push(cell.innerText);
-                counter += 1;
-
-            } else if (clickedByUser.includes(cell.innerText)) {
-                counter += 0;
-            }
-
-            // console.log(counter);
 
             if (bombList.includes(i)) {
                 cell.classList.add("bomb");
+
                 cell.innerText = "";
                 setTimeout(function () {
                     alert(`OPS: SEI PASSATO SU UNA BOMBA!
-                il tuo punteggio è: ${counter - 1}`);
+                il tuo punteggio è: ${counter}`);
                 }, 200);
                 setTimeout(function () {
                     h1.classList.remove("d-none");
                     grid.classList.add("d-none");
                 }, 500);
-                return
+
+                return;
+            } else if (cell.classList.contains("clicked")) {
+                return;
             } else {
                 cell.classList.add("clicked");
                 cell.innerText = "";
+                counter++;
             }
+
             if (counter === (userChoice - 16)) {
                 alert(`VINTO CON UN PUNTEGGIO DI: ${counter}`)
                 setTimeout(function () {
